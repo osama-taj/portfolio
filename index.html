@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 , viewport-fit=cover"/>
   <title>Osamah Taj Al-Deen — Flutter Developer & AI Enthusiast</title>
   <meta name="description" content="Flutter Developer, Data Analyst & AI Enthusiast — Building scalable mobile apps and intelligent systems."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -677,13 +677,24 @@
 </footer>
 
 <!-- ============ SCRIPTS ============ -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
 <!-- GSAP + ScrollTrigger -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="assets/js/i18n.js"></script>
-<script src="assets/js/telegram.js"></script>
-<script src="assets/js/main.js"></script>
-<script src="assets/js/particles.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="assets/js/i18n.js" defer></script>
+<script src="assets/js/telegram.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+<script src="assets/js/particles.js" defer></script>
+  <script>
+  window.addEventListener('load', function() {
+    if (typeof gsap === 'undefined') {
+      document.querySelectorAll('[data-gsap]').forEach(function(el) {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        el.style.transition = 'none';
+      });
+    }
+  });
+</script>
 </body>
 </html>
