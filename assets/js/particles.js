@@ -111,7 +111,7 @@
         ctx.font=`600 ${this.fontSize}px 'JetBrains Mono',monospace`;
         const tw=ctx.measureText(this.token).width, fw=tw+pad*2+8;
         ctx.beginPath();
-        ctx.roundRect(-fw/2,-fh/2,fw,fh,fh/2);
+        arcTo(-fw/2,-fh/2,fw,fh,fh/2);
         ctx.fillStyle=this.colorTpl.replace('{a}',this.alpha*0.16);
         ctx.fill();
         ctx.strokeStyle=color; ctx.lineWidth=0.75; ctx.stroke();
