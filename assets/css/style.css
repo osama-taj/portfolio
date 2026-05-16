@@ -1151,3 +1151,89 @@ a.ci-val:hover { color: var(--accent); }
   .hero-title    { font-size: 1.75rem; }
   .profile-card  { max-width: 100%; }
 }
+
+
+/* ============================================================
+   iOS SAFARI FIXES
+   ============================================================ */
+
+/* 1. Replace 100vh with -webkit-fill-available so hero fills
+      the screen properly without the address bar causing overflow */
+.hero-section {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  min-height: stretch;
+}
+
+/* 2. Sticky / fixed elements flicker on iOS — force GPU layer */
+.site-header {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* 3. backdrop-filter needs -webkit- on all iOS versions */
+.site-header,
+.mobile-nav,
+.profile-card,
+.contact-form-wrap {
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* 4. Smooth momentum scrolling inside any scroll containers */
+* {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 5. Prevent text size adjustment on rotation (iOS quirk) */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 6. Fix tap highlight color (removes grey flash on tap in iOS) */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 7. Input/textarea zoom prevention (iOS zooms in on inputs < 16px) */
+.form-grp input,
+.form-grp textarea {
+  font-size: 16px !important;  /* >= 16px prevents auto-zoom on iOS */
+}
+
+/* 8. Canvas elements — ensure they render correctly on retina iOS */
+canvas {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* 9. Fix cursor:none breaking touch on iOS — show default cursor */
+@media (hover: none) and (pointer: coarse) {
+  body { cursor: auto !important; }
+  .cursor-dot, .cursor-ring { display: none !important; }
+}
+
+/* 10. Fix position:fixed inside transformed parents (iOS Safari bug) */
+.orb, .grid-overlay, #code-canvas, #skills-canvas, #contact-canvas {
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+/* 11. Safe area padding for notch/Dynamic Island iPhones */
+.site-header {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+.footer-inner {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* 12. Fix conic-gradient (avatar ring) — not supported on iOS < 15 */
+@supports not (background: conic-gradient(red, blue)) {
+  .avatar-ring {
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    animation: ringRotate 4s linear infinite;
+  }
+}
